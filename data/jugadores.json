@@ -1,0 +1,11 @@
+[
+    {
+        "nombre": "Juan",
+        "id": "J002",
+        "saldo": 1000000.0,
+        "historial": [],
+        "juegosGanados": 0,
+        "juegosPerdidos": 0,
+        "totalApostado": 0
+    }
+]
