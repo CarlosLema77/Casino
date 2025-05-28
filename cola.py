@@ -1,47 +1,33 @@
 import json
 import os
-from gestionJugadores import cargarJugadores
 
 RUTA_COLAS = "data/colas.json"
 
-def cargarCola(nombreJuego):
+def cargarColas():
     if not os.path.exists(RUTA_COLAS):
-        return {}
+        return {"tragamonedas": [], "blackjack": []}
     with open(RUTA_COLAS, "r") as archivo:
-        colas = json.load(archivo)
-    return colas.get(nombreJuego, [])
+        return json.load(archivo)
 
-def guardarCola(nombreJuego, cola):
-    if os.path.exists(RUTA_COLAS):
-        with open(RUTA_COLAS, "r") as archivo:
-            colas = json.load(archivo)
-    else:
-        colas = {}
-
-    colas[nombreJuego] = cola
+def guardarColas(colas):
     with open(RUTA_COLAS, "w") as archivo:
         json.dump(colas, archivo, indent=4)
 
-def agregarACola(nombreJuego, idJugador):
-    jugadores = cargarJugadores()
-    if not any(j['id'] == idJugador for j in jugadores):
-        print("Jugador no encontrado.")
-        return
+def agregarACola(juego, idJugador):
+    colas = cargarColas()
+    if juego not in colas:
+        colas[juego] = []
+    colas[juego].append(idJugador)
+    guardarColas(colas)
+    print(f"Jugador {idJugador} agregado a la cola de {juego}.")
 
-    cola = cargarCola(nombreJuego)
-    if idJugador in cola:
-        print("El jugador ya está en la cola.")
-        return
-    cola.append(idJugador)
-    guardarCola(nombreJuego, cola)
-    print(f"Jugador {idJugador} agregado a la cola de {nombreJuego}.")
-
-def atenderJugador(nombreJuego):
-    cola = cargarCola(nombreJuego)
-    if not cola:
-        print(f"No hay jugadores en la cola de {nombreJuego}.")
+def atenderSiguiente(juego):
+    colas = cargarColas()
+    if juego in colas and colas[juego]:
+        siguiente = colas[juego].pop(0)
+        guardarColas(colas)
+        print(f"Siguiente jugador para {juego}: {siguiente}")
+        return siguiente
+    else:
+        print(f"No hay jugadores en la cola de {juego}.")
         return None
-    idJugador = cola.pop(0)
-    guardarCola(nombreJuego, cola)
-    print(f"Atendiendo jugador {idJugador} en {nombreJuego}.")
-    return idJugador

@@ -7,5 +7,14 @@
         "juegosGanados": 0,
         "juegosPerdidos": 0,
         "totalApostado": 0
+    },
+    {
+        "nombre": "puta",
+        "id": "putaa",
+        "saldo": 10000.0,
+        "historial": [],
+        "juegosGanados": 0,
+        "juegosPerdidos": 0,
+        "totalApostado": 0
     }
 ]

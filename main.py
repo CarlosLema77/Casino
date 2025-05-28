@@ -1,7 +1,8 @@
 from gestionJugadores import registrarJugador, consultarJugador, modificarJugador, eliminarJugador
 from historial import mostrarHistorial
-from cola import agregarACola, atenderJugador
-from juegos import tragamonedas, blackjack
+from cola import agregarACola, atenderSiguiente
+from juegos.tragamonedas import jugarTragamonedas
+from juegos.blackjack import jugarBlackjack
 
 def menu():
     while True:
@@ -12,9 +13,9 @@ def menu():
         print("4. Eliminar jugador")
         print("5. Ver historial")
         print("6. Agregar jugador a cola")
-        print("7. Atender tragamonedas")
-        print("8. Atender blackjack")
-        print("0. Salir")
+        print("7. Jugar Tragamonedas")
+        print("8. Jugar Blackjack")
+        print("9. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -27,24 +28,25 @@ def menu():
         elif opcion == "4":
             eliminarJugador()
         elif opcion == "5":
-            idJugador = input("ID del jugador: ")
+            idJugador = input("Ingrese ID del jugador: ")
             mostrarHistorial(idJugador)
         elif opcion == "6":
-            juego = input("Nombre del juego (tragamonedas/blackjack): ").lower()
-            idJugador = input("ID del jugador: ")
+            juego = input("Ingrese el nombre del juego (tragamonedas / blackjack): ").lower()
+            idJugador = input("Ingrese el ID del jugador: ")
             agregarACola(juego, idJugador)
         elif opcion == "7":
-            idJugador = atenderJugador("tragamonedas")
-            if idJugador:
-                tragamonedas(idJugador)
+            jugador = atenderSiguiente("tragamonedas")
+            if jugador:
+                jugarTragamonedas(jugador)
         elif opcion == "8":
-            idJugador = atenderJugador("blackjack")
-            if idJugador:
-                blackjack(idJugador)
-        elif opcion == "0":
+            jugador = atenderSiguiente("blackjack")
+            if jugador:
+                jugarBlackjack(jugador)
+        elif opcion == "9":
+            print("Gracias por usar el sistema.")
             break
         else:
-            print("Opción inválida.")
+            print("Opción no válida.")
 
 if __name__ == "__main__":
     menu()
