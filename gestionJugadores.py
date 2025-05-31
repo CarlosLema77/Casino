@@ -51,7 +51,7 @@ def consultarJugador():
 
     jugadores=cargarJugadores() #load the players from the json file"""
 
-    id_unico = input("Ingrese el ID único del jugador a modificar: ") #ask for the player's unique ID
+    id_unico = input("Ingrese el ID único del jugador a consultar: ")#ask for the player's unique ID
 
     for jugador in jugadores:
         if jugador['id'] == id_unico:
