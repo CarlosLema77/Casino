@@ -1,8 +1,8 @@
 from gestionJugadores import registrarJugador, consultarJugador, modificarJugador, eliminarJugador
-from historial import mostrarHistorial
+from historial import mostrar_historial
 from cola import agregarACola, atenderSiguiente
-from juegos.tragamonedas import jugarTragamonedas
-from juegos.blackjack import jugarBlackjack
+from juegos.tragamonedas import tragamonedas
+from juegos.blackjack import blackjack
 
 def menu():
     while True:
@@ -29,7 +29,7 @@ def menu():
             eliminarJugador()
         elif opcion == "5":
             idJugador = input("Ingrese ID del jugador: ")
-            mostrarHistorial(idJugador)
+            mostrar_historial(idJugador)
         elif opcion == "6":
             juego = input("Ingrese el nombre del juego (tragamonedas / blackjack): ").lower()
             idJugador = input("Ingrese el ID del jugador: ")
@@ -37,11 +37,11 @@ def menu():
         elif opcion == "7":
             jugador = atenderSiguiente("tragamonedas")
             if jugador:
-                jugarTragamonedas(jugador)
+                tragamonedas(jugador)
         elif opcion == "8":
             jugador = atenderSiguiente("blackjack")
             if jugador:
-                jugarBlackjack(jugador)
+                blackjack(jugador)
         elif opcion == "9":
             print("Gracias por usar el sistema.")
             break
