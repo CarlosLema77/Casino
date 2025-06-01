@@ -1,35 +1,45 @@
 import json
-from datetime import datetime
+import os
+from gestionJugadores import cargarJugadores, guardarJugadores
 
-HISTORIAL_PATH = "data/historial.json"
+def historialJugador(idJugador, actividad):
+    """
+    Adds a new activity to the player's individual history (as a stack).
+    Keeps only the 10 most recent entries.
+    Updates the 'jugadores.json' file.
+    """
+    jugadores = cargarJugadores()  # Load the players from the JSON file
 
-def registrar_en_historial(id_jugador, juego, resultado, apuesta, ganancia):
-    nuevo_registro = {
-        "id": id_jugador,
-        "juego": juego,
-        "resultado": resultado,
-        "apuesta": apuesta,
-        "ganancia": ganancia,
-        "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    }
+    for jugador in jugadores:
+        if jugador['id'] == idJugador:
+            # If the history already has 10 entries, remove the oldest (first in)
+            if len(jugador['historial']) == 10:
+                jugador['historial'].pop(0)
 
-    try:
-        with open(HISTORIAL_PATH, "r", encoding="utf-8") as f:
-            historial = json.load(f)
-    except FileNotFoundError:
-        historial = []
+            # Add the new activity to the end (acts as top of the stack)
+            jugador['historial'].append(actividad)
+            guardarJugadores(jugadores)
+            print(f"Actividad registrada en el historial del jugador {jugador['nombre']}.")
+            return
 
-    historial.append(nuevo_registro)
+    print("Jugador no encontrado.")
 
-    with open(HISTORIAL_PATH, "w", encoding="utf-8") as f:
-        json.dump(historial, f, indent=4)
+def mostrarHistorial(idJugador):
+    """
+    Displays the activity history of a specific player by ID.
+    Shows the most recent activities (up to 10).
+    """
+    jugadores = cargarJugadores()
 
+    for jugador in jugadores:
+        if jugador['id'] == idJugador:
+            print(f"Historial del jugador {jugador['nombre']}:")
+            if len(jugador['historial']) == 0:
+                print("El historial está vacío.")
+                return
+            else:
+                for actividad in jugador['historial']:
+                    print(actividad)
+                return
 
-def mostrar_historial():
-    try:
-        with open(HISTORIAL_PATH, "r", encoding="utf-8") as f:
-            historial = json.load(f)
-        for entrada in historial:
-            print(f"{entrada['fecha']} - {entrada['id']} jugó {entrada['juego']}: {entrada['resultado']}, apostó {entrada['apuesta']} y ganó {entrada['ganancia']}")
-    except FileNotFoundError:
-        print("No hay historial registrado.")
+    print("Jugador no encontrado.")

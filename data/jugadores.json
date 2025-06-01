@@ -1,29 +1,12 @@
 [
     {
-        "nombre": "Juan",
         "id": "J002",
+        "nombre": "Juan",
         "saldo": 1000000.0,
         "historial": [],
         "juegosGanados": 0,
         "juegosPerdidos": 0,
         "totalApostado": 0
-    },
-    {
-        "nombre": "zorra",
-        "id": "putaa",
-        "saldo": 13000.0,
-        "historial": [],
-        "juegosGanados": 1,
-        "juegosPerdidos": 7,
-        "totalApostado": 11000
-    },
-    {
-        "nombre": "duran",
-        "id": "000",
-        "saldo": 995999.0,
-        "historial": [],
-        "juegosGanados": 0,
-        "juegosPerdidos": 3,
-        "totalApostado": 4000
     }
+    
 ]
