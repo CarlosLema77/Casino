@@ -1,4 +1,4 @@
-from gestionJugadores import cargarJugadores
+from gestionJugadores import cargarJugadores 
 
 def reporteSaldoMayor():
     """
