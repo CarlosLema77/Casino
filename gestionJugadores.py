@@ -12,6 +12,7 @@ def cargarJugadores():
     with open(ruta, "r") as archivo:
         return json.load(archivo)
 
+
 def guardarJugadores(listaJugadores):
     """
     Saves the list of players to the JSON file with indentation.
@@ -23,9 +24,9 @@ def guardarJugadores(listaJugadores):
 
 def registrarJugador():
     """
-    Registers a new player by asking for their name, unique ID, and initial balance.
-    Validates that the ID is unique and the balance is not negative.
-    Saves the updated list to the JSON file.
+    Registers a new player by asking for name, unique ID, and initial balance.
+    Ensures ID is unique and balance is not negative.
+    Then saves the player to the JSON file.
     """
     jugadores = cargarJugadores()
 
@@ -33,7 +34,6 @@ def registrarJugador():
     id_unico = input("Ingrese el ID único del jugador: ")
     saldo_inicial = float(input("Ingrese el saldo inicial del jugador: "))
 
-    # Check if ID already exists
     for jugador in jugadores:
         if jugador['id'] == id_unico:
             print("El ID ya está en uso. Intente nuevamente.")
@@ -60,7 +60,7 @@ def registrarJugador():
 
 def consultarJugador():
     """
-    Searches for a player by their unique ID and displays their information.
+    Looks up a player by their ID and displays their information.
     """
     jugadores = cargarJugadores()
     id_unico = input("Ingrese el ID único del jugador a consultar: ")
@@ -75,8 +75,8 @@ def consultarJugador():
 
 def modificarJugador():
     """
-    Modifies a player's name and/or balance by their unique ID.
-    Validates that the new balance is not negative.
+    Allows updating a player's name and/or balance.
+    Validates non-negative balance and saves changes to file.
     """
     jugadores = cargarJugadores()
     id_unico = input("Ingrese el ID único del jugador a modificar: ")
@@ -121,7 +121,7 @@ def modificarJugador():
 def eliminarJugador():
     """
     Deletes a player from the system by their unique ID.
-    Asks for confirmation before removing the player.
+    Asks for confirmation before deleting.
     """
     jugadores = cargarJugadores()
     id_unico = input("Ingrese el ID único del jugador a eliminar: ")

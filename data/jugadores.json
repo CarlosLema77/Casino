@@ -1,12 +1,34 @@
 [
     {
-        "id": "J002",
-        "nombre": "Juan",
-        "saldo": 1000000.0,
+        "nombre": "Carlos",
+        "id": "AA001",
+        "saldo": 1200.0,
+        "historial": [
+            "Jug\u00f3 Blackjack (recursivo) - PERDI\u00d3 $100.0",
+            "Jug\u00f3 Blackjack (recursivo) - EMPAT\u00d3. Apuesta devuelta $100.0",
+            "Jug\u00f3 Blackjack (recursivo) - PERDI\u00d3 $100.0",
+            "Jug\u00f3 Blackjack (recursivo) - GAN\u00d3 $400.0 con apuesta de $200.0"
+        ],
+        "juegosGanados": 1,
+        "juegosPerdidos": 2,
+        "totalApostado": 500.0
+    },
+    {
+        "nombre": "Narver",
+        "id": "AB001",
+        "saldo": 1000.0,
+        "historial": [],
+        "juegosGanados": 0,
+        "juegosPerdidos": 0,
+        "totalApostado": 1000
+    },
+    {
+        "nombre": "DuranPX",
+        "id": "AC001",
+        "saldo": 500.0,
         "historial": [],
         "juegosGanados": 0,
         "juegosPerdidos": 0,
         "totalApostado": 0
     }
-    
 ]

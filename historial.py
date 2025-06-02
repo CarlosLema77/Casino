@@ -1,45 +1,43 @@
 import json
 import os
-from gestionJugadores import cargarJugadores, guardarJugadores
+from gestionJugadores import cargarJugadores
 
-def historialJugador(idJugador, actividad):
+def historialJugador(idJugador, actividad, jugadores=None):
     """
-    Adds a new activity to the player's individual history (as a stack).
-    Keeps only the 10 most recent entries.
-    Updates the 'jugadores.json' file.
+    Adds an activity to the player's history.
+    - If 'jugadores' is passed, modifies that list (preferred).
+    - If not, loads the player list from file (read-only).
+    This version does NOT save anything by itself.
     """
-    jugadores = cargarJugadores()  # Load the players from the JSON file
+    if jugadores is None:
+        jugadores = cargarJugadores()
 
     for jugador in jugadores:
         if jugador['id'] == idJugador:
-            # If the history already has 10 entries, remove the oldest (first in)
-            if len(jugador['historial']) == 10:
+            if 'historial' not in jugador or not isinstance(jugador['historial'], list):
+                jugador['historial'] = []
+            if len(jugador['historial']) >= 10:
                 jugador['historial'].pop(0)
-
-            # Add the new activity to the end (acts as top of the stack)
             jugador['historial'].append(actividad)
-            guardarJugadores(jugadores)
-            print(f"Actividad registrada en el historial del jugador {jugador['nombre']}.")
+            print(f"[DEBUG] Historial actualizado: {actividad}")
             return
 
-    print("Jugador no encontrado.")
+    print("Jugador no encontrado al actualizar historial.")
 
 def mostrarHistorial(idJugador):
     """
     Displays the activity history of a specific player by ID.
-    Shows the most recent activities (up to 10).
     """
     jugadores = cargarJugadores()
 
     for jugador in jugadores:
         if jugador['id'] == idJugador:
             print(f"Historial del jugador {jugador['nombre']}:")
-            if len(jugador['historial']) == 0:
+            if not jugador.get('historial'):
                 print("El historial está vacío.")
                 return
-            else:
-                for actividad in jugador['historial']:
-                    print(actividad)
-                return
+            for actividad in jugador['historial']:
+                print(actividad)
+            return
 
     print("Jugador no encontrado.")

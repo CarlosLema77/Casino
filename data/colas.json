@@ -1,4 +1,11 @@
 {
-    "tragamonedas": [],
+    "tragamonedas": [
+        "AA001",
+        "AA001",
+        "AA001",
+        "AA001",
+        "AA001",
+        "AA001"
+    ],
     "blackjack": []
 }

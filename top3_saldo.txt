@@ -1,0 +1,16 @@
+Top 3 jugadores con más saldo:
+
+Top 1:
+Nombre: Carlos
+ID: AA001
+Saldo: $1200.0
+
+Top 2:
+Nombre: Narver
+ID: AB001
+Saldo: $1000.0
+
+Top 3:
+Nombre: DuranPX
+ID: AC001
+Saldo: $500.0
