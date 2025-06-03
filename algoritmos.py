@@ -63,7 +63,7 @@ def ordenarBurbuja(jugadores, clave):
     n = len(jugadores)
     for i in range(n):
         for j in range(0, n - i - 1):
-            if jugadores[j][clave] > jugadores[j + 1][clave]:
+            if jugadores[j][clave] < jugadores[j + 1][clave]:
                 jugadores[j], jugadores[j + 1] = jugadores[j + 1], jugadores[j]
 
 
@@ -76,7 +76,7 @@ def ordenarSeccion(jugadores, clave):
     for i in range(n):
         indiceMenor = i
         for j in range(i + 1, n):
-            if jugadores[j][clave] < jugadores[indiceMenor][clave]:
+            if jugadores[j][clave] > jugadores[indiceMenor][clave]:
                 indiceMenor = j
 
         if indiceMenor != i:

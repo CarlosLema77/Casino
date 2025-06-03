@@ -5,7 +5,10 @@
         "AA001",
         "AA001",
         "AA001",
+        "AA001",
         "AA001"
     ],
-    "blackjack": []
+    "blackjack": [
+        "AA001"
+    ]
 }

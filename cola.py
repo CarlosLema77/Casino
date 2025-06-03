@@ -28,6 +28,11 @@ def agregarACola(juego, idJugador):
         juego (str): The name of the game ("tragamonedas" or "blackjack").
         idJugador (str): The player's unique ID to add to the queue.
     """
+
+    if juego.lower() != "blackjack" and juego.lower() != "tragamonedas":
+        print("Ese juego no existe. ")
+        return
+
     colas = cargarColas()
 
     # Create the queue if it doesn't exist yet
